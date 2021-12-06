@@ -1,29 +1,85 @@
 <template>
   <header>
     <nav>
-        <router-link to="/" class="logo">
-          <img src="@/assets/shopping-cart-svgrepo-com.svg" alt="Ranek">
+      <router-link 
+        to="/" 
+        class="logo"
+      >
+        <img 
+          src="@/assets/shopping-cart-svgrepo-com.svg" 
+          alt="Logo"
+        >
+      </router-link>
+          <select 
+            v-model="selected" 
+            @click="filtrarCategoria"
+          >
+            <option 
+              value="" 
+              disabled
+            >
+              Categorias
+            </option>
+            <option 
+              value="" 
+            >
+              Todos
+            </option>
+            <option 
+              value="men's clothing"
+            >
+              Roupas Masculinas
+            </option>
+            <option 
+              value="women's clothing"
+            >
+              Roupas femininas
+            </option>
+            <option 
+              value="jewelery"
+            >
+              Joias
+            </option>
+            <option 
+              value="electronics"
+            >
+              Eletronicos
+            </option>
+        </select>
+      <form>
+        <input 
+          id="busca" 
+          name="busca" 
+          type="text"  
+          placeholder="Pesquisar.." 
+          v-model="busca"
+        >
+        <input 
+          id="search" 
+          type="submit"  
+          value="pesquisar" 
+          @click.prevent="pesquisarProdutos"
+        >
+      </form>
+      
+      <div 
+        class="loginCarrinho"
+      >
+        <router-link 
+          to="/carrinho" 
+          class="carrinhoIcon"
+        >
+          <img 
+            src="../assets/clipart129459.png" 
+            alt=""
+          >
         </router-link>
-            <select v-model="selected" 
-            @click="filtrarCategoria">
-              <option value="" disabled>Categorias</option>
-               <option value="" >Todos</option>
-              <option value="men's clothing">Roupas Masculinas</option>
-              <option value="women's clothing">Roupas femininas</option>
-              <option value="jewelery">Joias</option>
-              <option value="electronics">Eletronicos</option>
-          </select>
-        <form>
-          <input id="busca" name="busca" type="text"  placeholder="Pesquisar.." v-model="busca">
-          <input id="search" type="submit"  value="pesquisar" @click.prevent="pesquisarProdutos">
-        </form>
-        
-        <div class="loginCarrinho">
-          <router-link to="/carrinho" class="carrinhoIcon">
-            <img src="../assets/clipart129459.png" alt="">
-          </router-link>
-            <span style="font-size: 25px"> | {{qtdCarrinho}}</span>
-        </div>
+          <span 
+            style="font-size: 25px"
+          > 
+            | {{qtdCarrinho}}
+          </span>
+      </div>
     </nav>
   </header>
 </template>
@@ -47,7 +103,6 @@
     },
     methods: {
       pesquisarProdutos() {
-        //this.$router.push({ query: { q: this.busca } });
         let resposta = this.$store.state.produtos.filter((e)=>{
           if (e.title.search(this.busca) === -1) {
               return false;
@@ -57,11 +112,9 @@
         })
         this.$store.commit('ATUALIZAR_PRODUTOS', resposta);
       },
+      
       filtrarCategoria(){
-        // this.$store.commit('FILTRAR_PRODUTOS_CATEGORIA', this.selected);
         this.$store.dispatch('filtrarProdutos', this.selected);
-        // this.$store.commit('ATUALIZAR_TITULO', this.selected);
-       
       },
 
     }

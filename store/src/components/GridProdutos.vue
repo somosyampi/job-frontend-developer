@@ -1,23 +1,51 @@
 <template>
-  <section class="container">
-    {{this.$store.state.categoria}}
-    {{this.$store.state.produtosCategoria}}
-        <!-- <div v-if="produtosCategoria" class="produtos">
-          <div class="produto" v-for="(produto, index) in produtosCategoria" :key="index">
-            <router-link :to="{name: 'produto', params: {id: produto.id}}">
-              <img v-if="produto.image" :src="produto.image" :alt="produto.image">
-              <p class="preco">{{produto.price | numeroPreco}}</p>
-              <h2 class="titulo">{{produto.title}}</h2>
-              <p>{{produto.description}}</p>
-            </router-link>
-          </div>
-        </div>
-        
-        <div v-else key="resposta">
-          <p class="resposta">Sem resultados..</p>
-        </div>
-        <Loading :exibir="carregando" />
-       -->
+  <section 
+    class="container"
+  >
+    <div 
+      v-if="produtosCategoria" 
+      class="produtos"
+    >
+      <div 
+        class="produto" 
+        v-for="(produto, index) in produtosCategoria" 
+        :key="index"
+      >
+        <router-link 
+          :to="{name: 'produto', params: {id: produto.id}}"
+        >
+          <img 
+            v-if="produto.image" 
+            :src="produto.image" 
+            :alt="produto.image"
+          >
+          <p 
+            class="preco"
+          >
+            {{produto.price | numeroPreco}}
+          </p>
+          <h2 
+            class="titulo">
+              {{produto.title}}
+            </h2>
+          <p>
+            {{produto.description}}
+          </p>
+        </router-link>
+      </div>
+    </div>
+    
+    <div 
+      v-else 
+      key="resposta"
+    >
+      <p 
+        class="resposta"
+      >
+        Sem resultados..
+      </p>
+    </div>
+    <Loading :exibir="carregando" />
   </section>
 </template>
 
@@ -30,13 +58,14 @@ export default {
   },
   data() {
     return {
+      
       carregando: false,
     };
   },
   computed: {
-    produtosCategoria() {
-      return this.$store.state.produtosCategoria;
-    },
+    produtosCategoria(){
+      return this.$store.state.produtos
+    }
   },
   methods: {
     getProdutos() {
@@ -45,32 +74,26 @@ export default {
       this.carregando = true;
 
       if(this.$store.state.categoria) {
-        categoria = new URL(`https://fakestoreapi.com/products/${this.$store.state.categoria}`)
+        categoria = new URL(`https://fakestoreapi.com/products/category/${this.$store.state.categoria}`)
       }
       else {
         categoria = new URL(`https://fakestoreapi.com/products`)
       }
       api.get(`${categoria.href}`)
         .then(response => {
-          // this.$store.dispatch('filtrarProdutos', response.data);
-          // // this.produtos = response.data;
-        
-           this.$store.commit('ATUALIZAR_PRODUTOS_CATEGORIA', response.data);
+           this.$store.commit('ATUALIZAR_PRODUTOS',  response.data);
+           this.carregarGrid()
         })
         .finally(() => {
           this.carregando = false;
         });
-        // api.get()
-        // .then(response => {
-        //   this.produtosTotal = Number(response.headers["x-total-count"]);
-        //   // this.produtos = response.data;
-        //   this.$store.commit('ATUALIZAR_CATEGORIA_PRODUTOS', response.data);
-        // });
     },
+    carregarGrid(){
+      this.getProdutos();
+    }
   },
-  watch: {},
   created() {
-    this.getProdutos();
+    this.carregarGrid();
   }
 };
 </script>

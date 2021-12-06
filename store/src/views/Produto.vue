@@ -1,24 +1,70 @@
 <template>
   <section>
-    <div v-if="produto" class="produto">
-      <ul class="fotos" v-if="produto.image">
+    <div 
+      v-if="produto" 
+      class="produto">
+      <ul 
+        class="fotos" 
+        v-if="produto.image">
         <li >
-          <img :src="produto.image" :alt="produto.image">
+          <img 
+          :src="produto.image" 
+          :alt="produto.image"
+        >
         </li>
       </ul>
-      <div class="info">
+      <div 
+        class="info"
+      >
         <h1>{{produto.title}}</h1>
-        <p class="preco">{{produto.price | numeroPreco}}</p>
-        <p class="descricao">{{produto.description}}</p>
+        <p 
+          class="preco"
+        >
+          {{produto.price | numeroPreco}}
+        </p>
+        <p 
+          class="descricao"
+        >
+          {{produto.description}}
+        </p>
       </div>
-      <div class="qtdItens">
-        <h3><span>Quantidade de itens:</span>  <span>{{qtdItens}}</span></h3> 
-        <button class="btn qtd" @click="qtdItens++">+</button>
-        <button class="btn qtd" @click="qtdItens--" v-show="qtdItens>0">-</button>
+      <div 
+        class="qtdItens"
+      >
+        <h3>
+          <span>Quantidade de itens:</span>
+          <span>{{qtdItens}}</span>
+        </h3> 
+        <button 
+          class="btn qtd" 
+          @click="qtdItens++"
+        >
+          +
+        </button>
+        <button 
+          class="btn qtd" 
+          @click="qtdItens--" 
+          v-show="qtdItens>0"
+        >
+          -
+        </button>
       </div>
-        <div class="buttons">
-          <button class="btn" @click="adicionarCarrinho">Adicionar ao carrinho</button>
-          <router-link class="btn back" to="/" style="background-color: rgb(119, 187, 214)"> Voltar</router-link>
+        <div 
+          class="buttons"
+        >
+          <button 
+            class="btn" 
+            @click="adicionarCarrinho"
+          >
+            Adicionar ao carrinho
+          </button>
+          <router-link 
+            class="btn back" 
+            to="/" 
+            style="background-color: rgb(119, 187, 214)"
+          > 
+            Voltar
+          </router-link>
         </div>
     </div>
     <Loading v-else/>
@@ -54,7 +100,7 @@ export default {
           this.qtdItens--
         }
       }else{
-        alert("selecione a quantidade")
+        alert("Selecione a quantidade")
       }
     }
   },

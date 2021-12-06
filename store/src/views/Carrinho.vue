@@ -1,33 +1,85 @@
-<template v-if="finalizarCompra">
+<template 
+>
   <section >
-    <div class="carrinhoContainer">
+    <div 
+      class="carrinhoContainer"
+    >
       <h2>Itens no carrinho</h2>
-        <div class="produtosCarrinho">
-          <table v-if="this.$store.state.qtdCarrinho>0">
-            <tr v-for="(produto, index) in produtos" :key="index">
-              <td><img v-if="produto.image" :src="produto.image" :alt="produto.title"></td>
-              <td width="50%px"><p class="titulo">{{produto.title}}</p></td>
-              <td><p class="preco">{{produto.price | numeroPreco}}</p></td>
-              <td><button class="btn btn-table delete" @click.prevent="deletar(index)">Deletar</button></td>
+        <div 
+          class="produtosCarrinho"
+        >
+          <table 
+            v-if="this.$store.state.qtdCarrinho>0"
+          >
+            <tr  
+              v-for="(produto, index) in produtos" 
+              :key="index"
+            >
+              <td>
+                <img 
+                  v-if="produto.image" 
+                  :src="produto.image" 
+                  :alt="produto.title"
+                >
+              </td>
+              <td 
+                width="50%px"
+              >
+                <p 
+                  class="titulo"
+                >
+                  {{produto.title}}
+                </p>
+              </td>
+              <td>
+                <p 
+                  class="preco"
+                >
+                  {{produto.price | numeroPreco}}
+                </p>
+              </td>
+              <td>
+                <button 
+                  class="btn btn-table delete" 
+                  @click.prevent="deletar(index)"
+                >
+                  Deletar
+                </button>
+              </td>
             </tr>
           </table>
         </div>
         <div>
           <h3>Valor total: <span>{{total}}</span></h3>
         </div>
-      <div class="buttons">
-        <button class="btn" @click.prevent="finalizarCompra">Finalizar Compra</button>
-        <router-link class="btn back" to="/" style="background-color: rgb(119, 187, 214)"> Continuar comprando</router-link>
+      <div 
+        class="buttons"
+      >
+        <button 
+          class="btn" 
+          @click.prevent="finalizarCompra"
+        >
+          Finalizar Compra
+        </button>
+        <router-link 
+          class="btn back" 
+          to="/" 
+          style="background-color: rgb(119, 187, 214)"
+        > 
+          Continuar comprando
+        </router-link>
       </div>
     </div>
+
   </section>
+
 </template>
 
 <script>
   export default {
     name: "FinalizarCompra",
     return: {
-      finalizarCompra: false,
+      
     },
     components: { 
     },
@@ -40,20 +92,25 @@
         return this.$store.state.total
       }
     },
+    watch:{
+      produtos(){
+        window.localStorage.produtos = this.produtos
+      }
+    },
     methods: {
-      mostrarFinalizar(){
-        this.finalizarCompra = true
-      },
 
       finalizarCompra() {
-        console.log("algo")
-      },
-      editar(){
-        this.$router.push('/')
+        if(this.$store.state.total){
+          alert("Compra finalizada com sucesso!!")
+          this.$store.dispatch('limpar');
+          this.$router.push('/')
+          
+        }else{
+          alert("Carrinho vazio, adicione itens para finalizar compras")
+        }
+
       },
       deletar(i) {
-        // this.$store.commit('REMOVER_CARRINHO', i)
-        // this.$store.commit('DELETAR_TOTAL_PRODUTOS', this.produto.price)
         this.$store.dispatch('removerItemDoCarrinho', i);
       }
     }
@@ -116,6 +173,6 @@
   }
   .delete{
     text-align: center;
-    background-color: red;
+    background-color: rgb(238, 142, 142);
   }
 </style>
