@@ -1,0 +1,129 @@
+<template>
+  <header>
+    <nav>
+        <router-link to="/" class="logo">
+          <img src="@/assets/shopping-cart-svgrepo-com.svg" alt="Ranek">
+        </router-link>
+            <select v-model="selected" 
+            @click="filtrarCategoria">
+              <option value="" disabled>Categorias</option>
+               <option value="" >Todos</option>
+              <option value="men's clothing">Roupas Masculinas</option>
+              <option value="women's clothing">Roupas femininas</option>
+              <option value="jewelery">Joias</option>
+              <option value="electronics">Eletronicos</option>
+          </select>
+        <form>
+          <input id="busca" name="busca" type="text"  placeholder="Pesquisar.." v-model="busca">
+          <input id="search" type="submit"  value="pesquisar" @click.prevent="pesquisarProdutos">
+        </form>
+        
+        <div class="loginCarrinho">
+          <router-link to="/carrinho" class="carrinhoIcon">
+            <img src="../assets/clipart129459.png" alt="">
+          </router-link>
+            <span style="font-size: 25px"> | {{qtdCarrinho}}</span>
+        </div>
+    </nav>
+  </header>
+</template>
+
+<script>
+  export default {
+    name: "NavBar",
+    data(){
+      return{
+        busca: [],
+        selected: ''
+      }
+    },
+    computed: {
+      nome() {
+        return this.$store.state.usuario.nome.replace(/ .*/, "");
+      },
+      qtdCarrinho() {
+        return this.$store.state.qtdCarrinho
+      }
+    },
+    methods: {
+      pesquisarProdutos() {
+        //this.$router.push({ query: { q: this.busca } });
+        let resposta = this.$store.state.produtos.filter((e)=>{
+          if (e.title.search(this.busca) === -1) {
+              return false;
+          } else {
+            return true;
+          }
+        })
+        this.$store.commit('ATUALIZAR_PRODUTOS', resposta);
+      },
+      filtrarCategoria(){
+        // this.$store.commit('FILTRAR_PRODUTOS_CATEGORIA', this.selected);
+        this.$store.dispatch('filtrarProdutos', this.selected);
+        // this.$store.commit('ATUALIZAR_TITULO', this.selected);
+       
+      },
+
+    }
+  };
+</script>
+
+<style scoped>
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 50px;
+  box-shadow: 0 2px 2px rgba(30, 60, 90, 0.1);
+  background: rgb(245, 250, 253);
+}
+
+.loginCarrinho{
+  width: 10%;
+  display: flex;
+  align-items: center;
+}
+.logo {
+  padding: 5px 0;
+}
+
+.logo img {
+  width: 60px;
+}
+form {
+  margin-top: 10px;
+  width: 30%;
+  position: relative;
+}
+
+#busca {
+  width: 100%;
+  padding: 20px;
+  border: none;
+  border-radius: 15px;
+}
+
+#search {
+  width: 62px;
+  height: 59px;
+  background: url("../assets/search.svg") no-repeat center center rgba(119, 189, 255, 0.493);
+  text-indent: -150px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  box-shadow: none;
+}
+.carrinhoIcon {
+   padding: 10px 0;
+   margin-right: 15px;
+}
+
+.carrinhoIcon img {
+  width: 45px;
+}
+
+
+</style>
