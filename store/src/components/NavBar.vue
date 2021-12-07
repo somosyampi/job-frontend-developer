@@ -85,12 +85,19 @@
 </template>
 
 <script>
+import { api } from "@/api.js"
+
   export default {
     name: "NavBar",
     data(){
       return{
         busca: [],
         selected: ''
+      }
+    },
+    watch: {
+      selected(val) {
+        this.getProdutos(val);
       }
     },
     computed: {
@@ -102,6 +109,33 @@
       }
     },
     methods: {
+      getProdutos(val) {
+         this.$store.commit('CARREGANDO',  true)
+
+        let categoria;
+
+        if(val === '') {
+          
+          categoria = new URL(`https://fakestoreapi.com/products`)
+        }
+        else {
+          categoria = new URL(`https://fakestoreapi.com/products/category/${this.$store.state.categoria}`)
+          
+        }
+        
+       
+
+        api.get(`${categoria.href}`)
+          .then(response => {
+            this.$store.commit('ATUALIZAR_PRODUTOS',  response.data)
+            // this.carregarGrid()//qual o motivo desta linha
+          })
+          .finally(() => {
+               this.$store.commit('CARREGANDO',  false)
+
+          });
+      },
+
       pesquisarProdutos() {
         let resposta = this.$store.state.produtos.filter((e)=>{
           if (e.title.search(this.busca) === -1) {
@@ -112,71 +146,73 @@
         })
         this.$store.commit('ATUALIZAR_PRODUTOS', resposta);
       },
-      
+
       filtrarCategoria(){
         this.$store.dispatch('filtrarProdutos', this.selected);
       },
 
+    },
+
+    created() {
+      this.getProdutos('');
     }
   };
 </script>
 
 <style scoped>
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px 50px;
-  box-shadow: 0 2px 2px rgba(30, 60, 90, 0.1);
-  background: rgb(245, 250, 253);
-}
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 50px;
+    box-shadow: 0 2px 2px rgba(30, 60, 90, 0.1);
+    background: rgb(245, 250, 253);
+  }
 
-.loginCarrinho{
-  width: 10%;
-  display: flex;
-  align-items: center;
-}
-.logo {
-  padding: 5px 0;
-}
+  .loginCarrinho{
+    width: 10%;
+    display: flex;
+    align-items: center;
+  }
+  .logo {
+    padding: 5px 0;
+  }
 
-.logo img {
-  width: 60px;
-}
-form {
-  margin-top: 10px;
-  width: 30%;
-  position: relative;
-}
+  .logo img {
+    width: 60px;
+  }
+  form {
+    margin-top: 10px;
+    width: 30%;
+    position: relative;
+  }
 
-#busca {
-  width: 100%;
-  padding: 20px;
-  border: none;
-  border-radius: 15px;
-}
+  #busca {
+    width: 100%;
+    padding: 20px;
+    border: none;
+    border-radius: 15px;
+  }
 
-#search {
-  width: 62px;
-  height: 59px;
-  background: url("../assets/search.svg") no-repeat center center rgba(119, 189, 255, 0.493);
-  text-indent: -150px;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  box-shadow: none;
-}
-.carrinhoIcon {
-   padding: 10px 0;
-   margin-right: 15px;
-}
+  #search {
+    width: 62px;
+    height: 59px;
+    background: url("../assets/search.svg") no-repeat center center rgba(119, 189, 255, 0.493);
+    text-indent: -150px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    box-shadow: none;
+  }
+  .carrinhoIcon {
+    padding: 10px 0;
+    margin-right: 15px;
+  }
 
-.carrinhoIcon img {
-  width: 45px;
-}
-
-
+  .carrinhoIcon img {
+    width: 45px;
+  }
 </style>

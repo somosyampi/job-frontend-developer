@@ -104,7 +104,6 @@
           alert("Compra finalizada com sucesso!!")
           this.$store.dispatch('limpar');
           this.$router.push('/')
-          
         }else{
           alert("Carrinho vazio, adicione itens para finalizar compras")
         }

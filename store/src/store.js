@@ -12,6 +12,7 @@ export default new Vuex.Store({
     qtdCarrinho: 0,
     titulo: "Produtos",
     total: 0,
+    carregando: true,
   },
   mutations: {
     ATUALIZAR_PRODUTOS(state, payload) {
@@ -56,11 +57,15 @@ export default new Vuex.Store({
     },
     LIMPAR_TOTAL(state){
       state.total = 0;
+    },
+    CARREGANDO(state,payload){
+      state.carregando= payload;
     }
     
   },
   actions: {
     filtrarProdutos(context, categoria) {
+
       context.commit('FILTRAR_CATEGORIA', categoria);
       context.commit('ATUALIZAR_TITULO', categoria);
     },
