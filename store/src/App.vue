@@ -134,6 +134,23 @@ textarea:focus {
   box-shadow: 0 6px 12px rgba(30, 60, 90, 0.2);
 }
 
+@media screen and (max-width: 600px){
+  select{
+    display: block;
+    padding: 10px 20px;
+    background:rgba(119, 189, 255, 0.493);
+    border-radius: 10px;
+    color: #fff;
+    text-align: center;
+    font-size: 100%;
+    box-shadow: 0 3px 6px rgba(30, 60, 90, 0.2);
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    color: #345;
+    width: 10%;
+  }
+}
 
 
 </style>

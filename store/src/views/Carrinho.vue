@@ -49,7 +49,7 @@
           </table>
         </div>
         <div>
-          <h3>Valor total: <span>{{total}}</span></h3>
+          <h3>Valor total: <span> R${{total}}</span></h3>
         </div>
       <div 
         class="buttons"

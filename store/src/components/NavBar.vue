@@ -167,6 +167,7 @@ import { api } from "@/api.js"
     padding: 5px 50px;
     box-shadow: 0 2px 2px rgba(30, 60, 90, 0.1);
     background: rgb(245, 250, 253);
+    margin-bottom: 3%;
   }
 
   .carrinhoItens{
@@ -225,6 +226,7 @@ import { api } from "@/api.js"
       padding: 5px 50px;
       box-shadow: 0 2px 2px rgba(30, 60, 90, 0.1);
       background: rgb(245, 250, 253);
+      margin-bottom: 10%;
     }
     .logo {
       width: 20%;
