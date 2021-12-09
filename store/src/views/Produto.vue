@@ -14,7 +14,7 @@
         </li>
       </ul>
       <div 
-        class="info"
+        class="titulo"
       >
         <h1>{{produto.title}}</h1>
         <p 
@@ -112,7 +112,6 @@ export default {
 
 <style scoped>
   .produto {
-
     padding: 30px 20px;
     margin: auto;
     width: 50%;
@@ -154,5 +153,29 @@ export default {
     margin-left: 50px;
     color: rgb(106, 157, 223);
     font-size: 30px;
+  }
+
+  @media screen and (max-width: 600px){
+    .produto {
+      padding: 30px 20px;
+      margin: auto;
+      width: 100%;
+    }
+    
+    .titulo{
+      font-size: 15px;
+    }
+    .qtdItens{
+      display:block
+    }
+    .qtdItens span{
+      color: rgb(106, 157, 223);
+      font-size: 18px;
+      width: 100%;
+    }
+    .qtd{
+      background: rgb(123, 194, 179);
+      color: black;
+    }
   }
 </style>

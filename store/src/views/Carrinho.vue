@@ -23,7 +23,6 @@
                 >
               </td>
               <td 
-                width="50%px"
               >
                 <p 
                   class="titulo"
@@ -117,15 +116,18 @@
 </script>
 
 <style scoped>
+  .carrinhoContainer {
+    max-width: 60%;
+    margin: 0 auto;
+  }
   table{
     width: 100%;
     border: solid 1px rgb(207, 207, 207);
     border-radius: 5px;
-    padding: 2%;
   }
   .buttons{
     display: flex;
-    width: 90%;
+    width: 100%;
     margin: 5% 0px;
   }
   h2 {
@@ -140,21 +142,19 @@
     width: 25%;
   }
 
-  .carrinhoContainer {
-    max-width: 60%;
-    margin: 0 auto;
-  }
 
   img {
     border-radius: 4px;
     margin-bottom: 20px;
     width: 40px;
     height: 60px;
-    margin: 10%;
+    margin: 0 2% 0 15%;
   }
 
   .titulo {
     margin-bottom: 10px;
+    width:30%;
+    margin: 0 auto;
   }
 
   .preco {
@@ -162,16 +162,41 @@
     font-weight: bold;
   }
 
-  .btn-table{
-    border: none;
-    border-radius: 3px;
-    width: 80px;
-    height: 35px;
-    font-size: 15px;
-    margin: 0px 10px;
-  }
   .delete{
     text-align: center;
     background-color: rgb(238, 142, 142);
+    font-size: 15px;
+    width: 80px;
+    height: 35px;
+    border: none;
+    border-radius: 3px;
+    margin: 0px 10px;
+  }
+
+
+  @media screen and (max-width: 600px){
+    .carrinhoContainer {
+      max-width: 100%;
+      margin: 0 5%;
+    }
+    .titulo {
+      margin-bottom: 10px;
+      width:50%;
+      font-size: 13px;    
+    }
+    img {
+      border-radius: 4px;
+      margin-bottom: 20px;
+      width: 300px;
+      height: 100px;
+    }
+    .preco {
+      color: rgb(77, 207, 224);
+      font-weight: bold;
+      font-size: 13px;
+    }
+    .back{
+      width: 50%;
+    }
   }
 </style>

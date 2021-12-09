@@ -63,7 +63,7 @@
       </form>
       
       <div 
-        class="loginCarrinho"
+        class="carrinhoItens"
       >
         <router-link 
           to="/carrinho" 
@@ -75,7 +75,7 @@
           >
         </router-link>
           <span 
-            style="font-size: 25px"
+            
           > 
             | {{qtdCarrinho}}
           </span>
@@ -169,7 +169,7 @@ import { api } from "@/api.js"
     background: rgb(245, 250, 253);
   }
 
-  .loginCarrinho{
+  .carrinhoItens{
     width: 10%;
     display: flex;
     align-items: center;
@@ -214,5 +214,65 @@ import { api } from "@/api.js"
 
   .carrinhoIcon img {
     width: 45px;
+  }
+  span{
+    font-size: 25px;
+  }
+  @media screen and (max-width:600px) {
+    nav {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 50px;
+      box-shadow: 0 2px 2px rgba(30, 60, 90, 0.1);
+      background: rgb(245, 250, 253);
+    }
+    .logo {
+      width: 20%;
+      margin-left: -40px;
+    }
+
+    .logo img {
+      width: 40px;
+    }
+    form {
+      margin-top: 10px;
+      width: 60%;
+      position: relative;
+    }
+
+    #busca {
+      width: 100%;
+      height: 40px;
+      padding: 15px;
+      border: none;
+      border-radius: 15px;
+      margin-bottom: 5%;
+    }
+
+    #search {
+      width: 48px;
+      height: 42px;
+      background: url("../assets/search.svg") no-repeat center center rgba(119, 189, 255, 0.829);
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      position: absolute;
+    }
+
+    .carrinhoItens{
+      width: 20%;
+      margin-right: -40px;
+    }
+    .carrinhoIcon {
+      padding: 10px 0;
+      
+    }
+
+    .carrinhoIcon img {
+      width: 40px;
+    }
+    span{
+      font-size: 15px;
+    }
   }
 </style>

@@ -63,13 +63,13 @@ select{
   border-radius: 10px;
   color: #fff;
   text-align: center;
-  font-size: 1rem;
+  font-size: 100%;
   box-shadow: 0 3px 6px rgba(30, 60, 90, 0.2);
   transition: all 0.3s;
   border: none;
   cursor: pointer;
   color: #345;
-  height: 50px;
+  width: 20%;
 }
 
 select:hover,
@@ -79,7 +79,6 @@ textarea:focus {
   outline: none;
   box-shadow: 0 6px 12px rgba(11, 47, 126, 0.5);
 }
-
 
 select option {
   color: #345;
@@ -120,13 +119,11 @@ select option {
 
 input,
 textarea {
+  width: 100%;
   border-radius: 4px;
   padding: 15px;
   box-shadow: 0 4px 8px rgba(30, 60, 90, 0.1);
-  transition: all 0.3s;
   font-size: 16px;
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  margin-bottom: 15px;
 }
 
 input:hover,

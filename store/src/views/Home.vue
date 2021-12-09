@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1>{{this.$store.state.titulo}}</h1>
+    
     <GridProdutos/>
   </section>
 </template>
@@ -17,11 +17,6 @@
 </script>
 
 <style scoped>
-  h1 {
-    color: rgb(119, 183, 255);
-    margin-top: 40px;
-    font-size: 2rem;
-    text-align: center;
-  }
+  
 </style>
 
