@@ -1,6 +1,6 @@
 # store
 
-## https://job-frontend-developer-e47sbs58c-thiciannymarques.vercel.app/#/
+## job-frontend-developer.vercel.app
 
 ## Project setup
 ```
