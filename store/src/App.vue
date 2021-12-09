@@ -59,9 +59,9 @@ img {
 select{
   display: block;
   padding: 10px 20px;
-  background:rgba(119, 189, 255, 0.493);
+  background:#48CAE4;
   border-radius: 10px;
-  color: #fff;
+  color: #03045E;
   text-align: center;
   font-size: 100%;
   box-shadow: 0 3px 6px rgba(30, 60, 90, 0.2);
@@ -70,6 +70,7 @@ select{
   cursor: pointer;
   color: #345;
   width: 20%;
+
 }
 
 select:hover,
@@ -84,7 +85,7 @@ select option {
   color: #345;
   border-radius: 15px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  background: rgb(171, 201, 230);
+  background: #48CAE4;
 }
 
 .btn {
@@ -110,6 +111,11 @@ select option {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  
+ background-color: #DCF6FF;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpolygon fill='%23d1f4fe' points='800 100 0 200 0 800 1600 800 1600 200'/%3E%3Cpolygon fill='%23c6f2fd' points='800 200 0 400 0 800 1600 800 1600 400'/%3E%3Cpolygon fill='%23bcf0fb' points='800 300 0 600 0 800 1600 800 1600 600'/%3E%3Cpolygon fill='%23b3eef8' points='1600 800 800 400 0 800'/%3E%3Cpolygon fill='%23aaedf5' points='1280 800 800 500 320 800'/%3E%3Cpolygon fill='%23a1ebf2' points='533.3 800 1066.7 800 800 600'/%3E%3Cpolygon fill='%2399E9EE' points='684.1 800 914.3 800 800 700'/%3E%3C/g%3E%3C/svg%3E");
+background-attachment: fixed;
+background-size: cover;
 }
 
 #main {
@@ -119,6 +125,7 @@ select option {
 
 input,
 textarea {
+  margin-bottom: 2% ;
   width: 100%;
   border-radius: 4px;
   padding: 15px;

@@ -122,8 +122,9 @@
   }
   table{
     width: 100%;
-    border: solid 1px rgb(207, 207, 207);
     border-radius: 5px;
+    background-color: #fdfdfd;
+    padding: 10px;
   }
   .buttons{
     display: flex;
@@ -175,6 +176,7 @@
 
 
   @media screen and (max-width: 600px){
+    
     .carrinhoContainer {
       max-width: 100%;
       margin: 0 5%;

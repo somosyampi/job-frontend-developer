@@ -70,7 +70,7 @@
           class="carrinhoIcon"
         >
           <img 
-            src="../assets/clipart129459.png" 
+            src="../assets/carrinho-de-compras.png" 
             alt=""
           >
         </router-link>
@@ -166,7 +166,7 @@ import { api } from "@/api.js"
     justify-content: space-between;
     padding: 5px 50px;
     box-shadow: 0 2px 2px rgba(30, 60, 90, 0.1);
-    background: rgb(245, 250, 253);
+    background: #00B4D8;
     margin-bottom: 3%;
   }
 
