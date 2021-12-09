@@ -1,6 +1,6 @@
 # store
 
-## job-frontend-developer.vercel.app
+## https://job-frontend-developer.vercel.app/#/
 
 ## Project setup
 ```
